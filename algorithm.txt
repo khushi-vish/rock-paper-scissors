@@ -1,0 +1,50 @@
+// Function to generate a random move for the computer
+function generateComputerMove() {
+    const moves = ["rock", "paper", "scissors"];
+    const randomIndex = Math.floor(Math.random() * moves.length);
+    return moves[randomIndex];
+}
+
+// Function to determine the winner of a round
+function determineWinner(userMove, computerMove) {
+    if (userMove === computerMove) {
+        return "It's a tie!";
+    } else if (
+        (userMove === "rock" && computerMove === "scissors") ||
+        (userMove === "paper" && computerMove === "rock") ||
+        (userMove === "scissors" && computerMove === "paper")
+    ) {
+        return "You win!";
+    } else {
+        return "You lose!";
+    }
+}
+
+// Main game loop
+while (true) {
+    // Get user move
+    const userMove = prompt("Choose your move: rock, paper, or scissors");
+    
+    // Validate user input
+    if (!["rock", "paper", "scissors"].includes(userMove)) {
+        alert("Invalid move. Please choose rock, paper, or scissors.");
+        continue;
+    }
+
+    // Generate computer move
+    const computerMove = generateComputerMove();
+
+    // Display moves
+    console.log(`Your move: ${userMove}`);
+    console.log(`Computer's move: ${computerMove}`);
+
+    // Determine and display the winner
+    const result = determineWinner(userMove, computerMove);
+    console.log(result);
+
+    // Ask if the user wants to play again
+    const playAgain = confirm("Do you want to play again?");
+    if (!playAgain) {
+        break;
+    }
+}
