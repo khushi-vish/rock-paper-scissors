@@ -28,13 +28,22 @@ choiceBtn.forEach((button) => {
     player = button.getAttribute("choice");
     computer = computerturn();
     playerText.textContent = `Player : ${player}`;
-    computerText.textContent = `Computer : ${computer}`;
+    computerText.textContent = `Computer : ....`;
+
+    setTimeout(() => {
+      computerText.textContent = `Computer : ${computer}`;
+      resultText.textContent = "....";
+    }, 2000);
+
     result = checkresult();
     keepTrack(result);
     localStorage.setItem("score", JSON.stringify(score));
-    resultText.textContent = result;
-    scoreText.textContent =
-      `Win:${score.win} | Lose:${score.lose} | Tie:${score.tie}` || score;
+
+    setTimeout(() => {
+      resultText.textContent = result;
+      scoreText.textContent =
+        `Win:${score.win} | Lose:${score.lose} | Tie:${score.tie}` || score;
+    }, 2500);
   });
 });
 
@@ -70,7 +79,7 @@ function computerturn() {
 //----------------------check function-----------------------------------
 function checkresult() {
   if (player === computer) {
-    return "Tie";
+    return "TIE !";
   } else if (computer === "Rock") {
     return player === "Paper" ? "You Win!" : "You Lose!";
   } else if (computer === "Paper") {
