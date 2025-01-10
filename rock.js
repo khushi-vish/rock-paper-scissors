@@ -29,10 +29,11 @@ choiceBtn.forEach((button) => {
     computer = computerturn();
     playerText.textContent = `Player : ${player}`;
     computerText.textContent = `Computer : ....`;
+    resultText.textContent = `Result : `;
 
     setTimeout(() => {
       computerText.textContent = `Computer : ${computer}`;
-      resultText.textContent = "....";
+      resultText.textContent = `Result : ....`;
     }, 2000);
 
     result = checkresult();
@@ -47,6 +48,8 @@ choiceBtn.forEach((button) => {
   });
 });
 
+// -----------------------------------reset function
+
 resetBtn.addEventListener("click", () => {
   score = {
     win: 0,
@@ -56,6 +59,8 @@ resetBtn.addEventListener("click", () => {
   scoreText.textContent =
     `Win:${score.win} | Lose:${score.lose} | Tie:${score.tie}` || score;
   localStorage.setItem("score", JSON.stringify(score));
+
+  location.reload();
 });
 
 //---------------------------computer function-----------------------
@@ -107,4 +112,20 @@ document.addEventListener("keydown", function (event) {
     // Reload the page
     location.reload();
   }
+});
+
+// ------------------button disable-----------------
+
+choiceBtn.forEach((button) => {
+  button.addEventListener("click", () => {
+    choiceBtn.forEach((button) => {
+      button.disabled = true;
+    });
+
+    setTimeout(() => {
+      choiceBtn.forEach((button) => {
+        button.disabled = false;
+      });
+    }, 2600);
+  });
 });
